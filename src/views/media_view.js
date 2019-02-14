@@ -32,16 +32,16 @@ MediaView.prototype.render = function (item) {
   itemContainer.appendChild(itemLike);
 
   itemLike.addEventListener('click', (event) => {
-    console.log(itemLike.value);
-    if (itemLike.value == "false"){
-      itemLike.value = "true";
+    console.log("value of liked film", itemLike.value);
+    if (itemLike.value === "false"){
+      item.like = true;
     }else{
-      itemLike.value = "false";
+      item.like = false;
     }
-    const jointKey = {id: `${item._id}`, tbutton: `${itemLike.value}` };
+    const jointKey = {id: `${item._id}`, like: item.like};
     PubSub.publish('MediaView:toggleButton-clicked', jointKey);
 
-  // return itemLike;
+  return itemLike;
   });
 
   this.container.appendChild(itemContainer);

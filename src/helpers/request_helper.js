@@ -9,5 +9,15 @@ RequestHelper.prototype.get = function(urlParam) {
     .catch((err) => console.error(err));
 };
 
+RequestHelper.prototype.put = function (payload) {
+ console.log("this url:", this.url);
+ console.log("payload to server", payload);
+ return fetch(`${this.url}/${payload.id}`, {
+   method: 'PUT',
+   body: JSON.stringify(payload),
+   headers: { 'Content-Type': 'application/json' }
+ })
+   .then((response) => response.json());
+};
 
 module.exports = RequestHelper;
