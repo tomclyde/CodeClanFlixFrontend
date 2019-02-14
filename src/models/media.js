@@ -21,6 +21,7 @@ Media.prototype.updateMovieItem = function (itemDetails) {
       PubSub.publish('Media:data-ready', movies);
     })
     .catch(console.error);
+  }
 
 Media.prototype.bindEvents = function (){
   PubSub.subscribe('MainPageView:genre-selected', (event) => {
@@ -34,6 +35,7 @@ Media.prototype.bindEvents = function (){
       })
       .catch(console.error);
   });
+
   PubSub.subscribe('MediaView:toggleButton-clicked', (evt) => {
     this.updateMovieItem(evt.detail);
   });
