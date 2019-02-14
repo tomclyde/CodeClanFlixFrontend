@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: red;
+  width:100%;
+  height:60px;
+}
+
+#featured-div {
+  background-color: blue;
+  width:100%;
+  height:calc(50vh - 30px);
+}
+
+#media-view-div {
+  background-color: green;
+  width:100%;
+  height:calc(50vh - 30px);
+}
+
+#splashscreen {
+  background-color: orange;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
