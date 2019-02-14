@@ -1,4 +1,5 @@
 const SplashScreenView = require ('./views/splashscreen_view.js');
+const Media = require ('./models/media.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   var xhr = new XMLHttpRequest();
   xhr.addEventListener("load", reqListener);
-  xhr.open("GET", "http://localhost:5000/api");
+  xhr.open("GET", "http://localhost:5000/api/movies");
   xhr.send();
 
   const button = document.querySelector('#login');

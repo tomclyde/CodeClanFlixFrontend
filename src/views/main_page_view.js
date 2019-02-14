@@ -6,7 +6,7 @@ const MainPageView = function (container) {
 };
 
 MainPageView.prototype.render = function () {
-  PubSub.subscribe.('Media:data-ready', (event) => {
+  PubSub.subscribe('Media:data-ready', (event) => {
     this.renderCard(event.detail);
   });
 
