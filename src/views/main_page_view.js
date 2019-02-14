@@ -76,6 +76,10 @@ MainPageView.prototype.populate = function (dropdown) {
     });
     const unique = new Set(array);
     const uniqueArray = Array.from(unique);
+    const optionAll = document.createElement('option');
+    optionAll.textContent = 'All';
+    optionAll.value = 'all';
+    dropdown.appendChild(optionAll);
     uniqueArray.forEach((genre) => {
       const option = document.createElement('option');
       option.textContent = genre;
