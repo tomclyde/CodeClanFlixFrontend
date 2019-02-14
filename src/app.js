@@ -22,5 +22,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const media = new Media(url);
   media.getData();
   media.bindEvents();
-
 });
