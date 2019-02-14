@@ -10,4 +10,4 @@ RequestHelper.prototype.get = function(urlParam) {
 };
 
 
-module.exports = Request;
+module.exports = RequestHelper;
