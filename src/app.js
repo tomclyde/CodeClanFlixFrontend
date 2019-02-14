@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM ready");
 
   function reqListener () {
+    console.log("THIS IS NEW");
     console.log(JSON.parse(this.responseText));
   }
 
