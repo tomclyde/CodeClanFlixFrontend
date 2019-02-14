@@ -26,6 +26,14 @@ Media.prototype.updateMovieItem = function (itemDetails) {
 Media.prototype.bindEvents = function (){
   PubSub.subscribe('MainPageView:genre-selected', (event) => {
     const genre = event.detail;
+    if (genre === 'all') {
+      this.request.get()
+        .then((items) => {
+          PubSub.publish('Media:data-ready', items);
+});
+}
+    else {
+
     this.request.get()
       .then((items) => {
         const filteredItems = items.filter((item) => {
@@ -34,7 +42,9 @@ Media.prototype.bindEvents = function (){
         PubSub.publish('Media:filtered-data-ready', filteredItems);
       })
       .catch(console.error);
+    }
   });
+
 
   PubSub.subscribe('MediaView:toggleButton-clicked', (evt) => {
     this.updateMovieItem(evt.detail);

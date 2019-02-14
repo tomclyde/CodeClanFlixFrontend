@@ -30,10 +30,24 @@ MainPageView.prototype.render = function () {
   const featured = document.createElement("div");
   featured.id = "featured-div";
   this.container.appendChild(featured);
+  this.renderFeatured(featured);
 
   const mediaView = document.createElement("div")
   mediaView.id = "media-view-div";
   this.container.appendChild(mediaView);
+};
+
+MainPageView.prototype.renderFeatured = function (featured) {
+  PubSub.subscribe('Media:data-ready', (event) => {
+    const url = event.detail[0].image;
+    const image = document.createElement('img');
+    image.src = url;
+    featured.appendChild(image);
+    const title = document.createElement('h1');
+    title.textContent = event.detail[0].name;
+    featured.appendChild(title);
+  });
+
 };
 
 MainPageView.prototype.renderCard = function (items) {
@@ -62,6 +76,10 @@ MainPageView.prototype.populate = function (dropdown) {
     });
     const unique = new Set(array);
     const uniqueArray = Array.from(unique);
+    const optionAll = document.createElement('option');
+    optionAll.textContent = 'All';
+    optionAll.value = 'all';
+    dropdown.appendChild(optionAll);
     uniqueArray.forEach((genre) => {
       const option = document.createElement('option');
       option.textContent = genre;
