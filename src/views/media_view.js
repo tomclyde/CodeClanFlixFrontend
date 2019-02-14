@@ -19,6 +19,11 @@ MediaView.prototype.render = function (item) {
   itemLanguage.textContent = item.language;
   itemContainer.appendChild(itemLanguage);
 
+  const itemImage = document.createElement('img');
+  itemImage.classList.add("movie-image");
+  itemImage.src = item.image;
+  itemContainer.appendChild(itemImage);
+
   this.container.appendChild(itemContainer);
 }
 

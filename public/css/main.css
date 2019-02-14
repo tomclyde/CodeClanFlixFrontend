@@ -9,6 +9,11 @@ header {
   height:60px;
 }
 
+.movie-image {
+  width: 100px;
+  height: 140px;
+}
+
 #featured-div {
   background-color: blue;
   width:100%;
