@@ -1,10 +1,10 @@
 const MainPageView = require('./main_page_view.js');
 
-const SplashScreen = function (button) {
+const SplashScreenView = function (button) {
   this.button = button;
 };
 
-SplashScreen.prototype.bindEvents = function () {
+SplashScreenView.prototype.bindEvents = function () {
   this.button.addEventListener('click', (event) => {
     const mainPageDiv = document.querySelector('#main-page');
     const mainPageView = new MainPageView(mainPageDiv);
@@ -14,4 +14,4 @@ SplashScreen.prototype.bindEvents = function () {
 
 }
 
-module.exports = SplashScreen;
+module.exports = SplashScreenView;

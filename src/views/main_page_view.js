@@ -6,6 +6,8 @@ const MainPageView = function (container) {
 
 MainPageView.prototype.render = function () {
   // PubSub.subscribe
+  const splashScreenDiv = document.querySelector('#splashscreen');
+  splashScreenDiv.innerHTML = "";
   const header = document.createElement("header");
   this.container.appendChild(header);
 
