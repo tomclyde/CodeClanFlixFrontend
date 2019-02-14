@@ -8,7 +8,9 @@ const MainPageView = function (container) {
 
 MainPageView.prototype.bindEvents = function() {
   PubSub.subscribe('Media:data-ready', (event) => {
-    console.log("Hi");
+    this.renderCard(event.detail);
+  });
+  PubSub.subscribe('Media:filtered-data-ready', (event) => {
     this.renderCard(event.detail);
   });
 }
@@ -23,6 +25,7 @@ MainPageView.prototype.render = function () {
   //build mainpage display
   const header = document.createElement("header");
   this.container.appendChild(header);
+  this.renderHeader(header);
 
   const featured = document.createElement("div");
   featured.id = "featured-div";
@@ -37,10 +40,36 @@ MainPageView.prototype.renderCard = function (items) {
   const mediaViewDiv = document.querySelector('#media-view-div');
   mediaViewDiv.innerHTML = "";
   const mediaView = new MediaView(mediaViewDiv);
-  console.log(items);
   items.forEach((item) => {
     mediaView.render(item)
   });
 };
+
+MainPageView.prototype.renderHeader = function (header) {
+  const dropdown = document.createElement('select');
+  header.appendChild(dropdown);
+  this.populate(dropdown);
+  dropdown.addEventListener('change', (event) => {
+  PubSub.publish('MainPageView:genre-selected', event.target.value)
+});
+};
+
+MainPageView.prototype.populate = function (dropdown) {
+  PubSub.subscribe('Media:data-ready', (event) => {
+    const data = event.detail;
+    const array = data.map((item) => {
+      return item.genre
+    });
+    const unique = new Set(array);
+    const uniqueArray = Array.from(unique);
+    uniqueArray.forEach((genre) => {
+      const option = document.createElement('option');
+      option.textContent = genre;
+      option.value = genre;
+      dropdown.appendChild(option);
+    });
+  })
+}
+
 
 module.exports = MainPageView;
