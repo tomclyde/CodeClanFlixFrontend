@@ -21,5 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const url = "http://localhost:5000/api/movies";
   const media = new Media(url);
   media.getData();
-
+  media.bindEvents();
 });

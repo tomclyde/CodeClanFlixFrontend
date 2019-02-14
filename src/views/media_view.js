@@ -1,4 +1,5 @@
 const MainPageView = require('./main_page_view.js');
+const PubSub = require('../helpers/pub_sub.js');
 
 const MediaView = function (container) {
   this.container = container;
@@ -19,7 +20,32 @@ MediaView.prototype.render = function (item) {
   itemLanguage.textContent = item.language;
   itemContainer.appendChild(itemLanguage);
 
+  const itemImage = document.createElement('img');
+  itemImage.classList.add("movie-image");
+  itemImage.src = item.image;
+  itemContainer.appendChild(itemImage);
+
+  const itemLike = document.createElement("input");
+  itemLike.classList.add("toggle-input");
+  itemLike.type = "button";
+  itemLike.value = item.like;
+  itemContainer.appendChild(itemLike);
+
+  itemLike.addEventListener('click', (event) => {
+    console.log("value of liked film", itemLike.value);
+    if (itemLike.value === "false"){
+      item.like = true;
+    }else{
+      item.like = false;
+    }
+    const jointKey = {id: `${item._id}`, like: item.like};
+    PubSub.publish('MediaView:toggleButton-clicked', jointKey);
+
+  return itemLike;
+  });
+
   this.container.appendChild(itemContainer);
 }
+
 
 module.exports = MediaView;
