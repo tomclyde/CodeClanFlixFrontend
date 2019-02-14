@@ -6,10 +6,6 @@ const Media = function (url) {
   this.request = new RequestHelper(this.url);
 };
 
-// Media.prototype.bindEvents = function () {
-//
-// };
-
 Media.prototype.getData =  function () {
   this.request.get()
     .then((items) => {
@@ -17,6 +13,15 @@ Media.prototype.getData =  function () {
     })
     .catch(console.error);
 };
+
+
+Media.prototype.updateMovieItem = function (itemDetails) {
+  this.request.put(itemDetails)
+    .then((movies) => {
+      PubSub.publish('Media:data-ready', movies);
+    })
+    .catch(console.error);
+  }
 
 Media.prototype.bindEvents = function (){
   PubSub.subscribe('MainPageView:genre-selected', (event) => {
@@ -40,6 +45,10 @@ Media.prototype.bindEvents = function (){
     }
   });
 
+
+  PubSub.subscribe('MediaView:toggleButton-clicked', (evt) => {
+    this.updateMovieItem(evt.detail);
+  });
 };
 
 module.exports = Media;
