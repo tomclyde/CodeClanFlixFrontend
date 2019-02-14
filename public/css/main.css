@@ -14,6 +14,11 @@ header {
   height: 140px;
 }
 
+.toggle-button {
+  width: 30px;
+  height: 30px;
+}
+
 #featured-div {
   background-color: blue;
   width:100%;
