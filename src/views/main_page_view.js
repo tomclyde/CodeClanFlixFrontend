@@ -6,9 +6,9 @@ const MainPageView = function (container) {
 };
 
 MainPageView.prototype.render = function () {
-  // PubSub.subscribe.('Media:data-ready', (event) => {
-  //   this.renderCard(event.detail);
-  // });
+  PubSub.subscribe.('Media:data-ready', (event) => {
+    this.renderCard(event.detail);
+  });
 
   //Remove the splashscreen
   const splashScreenDiv = document.querySelector('#splashscreen');
