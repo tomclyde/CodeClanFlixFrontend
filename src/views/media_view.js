@@ -38,7 +38,9 @@ MediaView.prototype.render = function (item) {
     }else{
       item.like = false;
     }
-    const jointKey = {id: `${item._id}`, like: item.like};
+    const dropdown = document.querySelector('select');
+    const jointKey = {id: `${item._id}`, like: item.like, genre: dropdown.value};
+    console.log('jointkey', jointKey);
     PubSub.publish('MediaView:toggleButton-clicked', jointKey);
 
   return itemLike;

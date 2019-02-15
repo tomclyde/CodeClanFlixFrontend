@@ -13,6 +13,14 @@ MainPageView.prototype.bindEvents = function() {
   PubSub.subscribe('Media:filtered-data-ready', (event) => {
     this.renderCard(event.detail);
   });
+
+  PubSub.subscribe('Media:all-data-ready', (event) => {
+    this.renderCard(event.detail);
+  });
+
+  PubSub.subscribe('Media:updated-data-ready', (event) => {
+    this.renderCard(event.detail);
+  });
 }
 
 MainPageView.prototype.render = function () {

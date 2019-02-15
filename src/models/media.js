@@ -18,10 +18,26 @@ Media.prototype.getData =  function () {
 Media.prototype.updateMovieItem = function (itemDetails) {
   this.request.put(itemDetails)
     .then((movies) => {
-      PubSub.publish('Media:data-ready', movies);
-    })
-    .catch(console.error);
+      console.log('iefbrh', itemDetails);
+      const genre = itemDetails.genre;
+      if (genre === 'all') {
+        this.request.get()
+          .then((items) => {
+            PubSub.publish('Media:all-data-ready', items);
+  });
   }
+      else {
+      this.request.get()
+        .then((items) => {
+          const filteredItems = items.filter((item) => {
+            return item.genre === genre
+          });
+          PubSub.publish('Media:filtered-data-ready', filteredItems);
+        })
+        .catch(console.error);
+      }
+  });
+}
 
 Media.prototype.bindEvents = function (){
   PubSub.subscribe('MainPageView:genre-selected', (event) => {
@@ -29,7 +45,7 @@ Media.prototype.bindEvents = function (){
     if (genre === 'all') {
       this.request.get()
         .then((items) => {
-          PubSub.publish('Media:data-ready', items);
+          PubSub.publish('Media:all-data-ready', items);
 });
 }
     else {
