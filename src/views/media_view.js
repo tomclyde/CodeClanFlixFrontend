@@ -7,6 +7,9 @@ const MediaView = function (container) {
 
 MediaView.prototype.render = function (item) {
   const itemContainer = document.createElement('div');
+  itemContainer.classList.add('media-box');
+
+  itemContainer.style.backgroundImage = `url(${item.image})`;
 
   const itemName = document.createElement('h2');
   itemName.textContent = item.name;
@@ -20,10 +23,10 @@ MediaView.prototype.render = function (item) {
   itemLanguage.textContent = item.language;
   itemContainer.appendChild(itemLanguage);
 
-  const itemImage = document.createElement('img');
-  itemImage.classList.add("movie-image");
-  itemImage.src = item.image;
-  itemContainer.appendChild(itemImage);
+  // const itemImage = document.createElement('img');
+  // itemImage.classList.add("movie-image");
+  // itemImage.src = item.image;
+  // itemContainer.appendChild(itemImage);
 
   const itemLike = document.createElement("input");
   itemLike.classList.add("toggle-input");
