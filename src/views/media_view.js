@@ -29,11 +29,17 @@ MediaView.prototype.render = function (item) {
   itemLike.classList.add("toggle-input");
   itemLike.type = "button";
   itemLike.value = item.like;
+  if (item.like === false){
+    itemLike.value = "Don't Like"
+  }
+  else {
+    itemLike.value = "Like"
+  };
   itemContainer.appendChild(itemLike);
 
   itemLike.addEventListener('click', (event) => {
     console.log("value of liked film", itemLike.value);
-    if (itemLike.value === "false"){
+    if (itemLike.value === "Don't Like"){
       item.like = true;
     }else{
       item.like = false;
