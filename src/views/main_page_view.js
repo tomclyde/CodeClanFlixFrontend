@@ -4,11 +4,14 @@ const SplashScreenView = require('./splashscreen_view.js');
 
 const MainPageView = function (container) {
   this.container = container;
+  this.data = null;
 };
 
 MainPageView.prototype.bindEvents = function() {
   PubSub.subscribe('Media:data-ready', (event) => {
+    this.renderFeatured(event.detail);
     this.renderCard(event.detail);
+
   });
   PubSub.subscribe('Media:filtered-data-ready', (event) => {
     this.renderCard(event.detail);
@@ -30,23 +33,24 @@ MainPageView.prototype.render = function () {
   const featured = document.createElement("div");
   featured.id = "featured-div";
   this.container.appendChild(featured);
-  this.renderFeatured(featured);
+  // this.renderFeatured(featured);
 
   const mediaView = document.createElement("div")
   mediaView.id = "media-view-div";
   this.container.appendChild(mediaView);
 };
 
-MainPageView.prototype.renderFeatured = function (featured) {
-  PubSub.subscribe('Media:data-ready', (event) => {
-    const url = event.detail[0].image;
+MainPageView.prototype.renderFeatured = function (data) {
+  const container = document.querySelector('#featured-div')
+  console.log("data0",data[0]);
+    const url = data[0].image;
     const image = document.createElement('img');
     image.src = url;
-    featured.appendChild(image);
+    container.appendChild(image);
     const title = document.createElement('h1');
-    title.textContent = event.detail[0].name;
-    featured.appendChild(title);
-  });
+    title.textContent = data[0].name;
+    container.appendChild(title);
+
 
 };
 
