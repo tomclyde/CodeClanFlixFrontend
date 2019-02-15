@@ -11,10 +11,15 @@ RequestHelper.prototype.get = function(urlParam) {
 
 RequestHelper.prototype.put = function (payload) {
  console.log("this url:", this.url);
- console.log("payload to server", payload);
- return fetch(`${this.url}/${payload.id}`, {
+ // delete payload.genre;
+ const result = {
+   id: payload.id,
+   like: payload.like
+ };
+ console.log("payload to server", result);
+ return fetch(`${this.url}/${result.id}`, {
    method: 'PUT',
-   body: JSON.stringify(payload),
+   body: JSON.stringify(result),
    headers: { 'Content-Type': 'application/json' }
  })
    .then((response) => response.json());
