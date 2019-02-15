@@ -37,13 +37,7 @@ header h1 {
 header select {
 }
 
-#login {
-  background-color: #65abd5;
-  color: white;
-  width: 18rem;
-  height: 6rem;
-  margin: 0;
-}
+
 
 .movie-image {
   width: 100px;
@@ -66,8 +60,13 @@ header select {
   height: 30rem;
   display: flex;
   align-items: flex-end;
-  box-shadow: -20px 50px 100px rgba(0,0,0,.2);
+  box-shadow: -10px 25px 50px rgba(0,0,0,.2);
   z-index: 2;
+}
+
+#featured-div:hover {
+  box-shadow: -20px 50px 100px rgba(0,0,0,.5);
+  cursor: pointer;
 }
 
 #featured-div h1 {
@@ -114,9 +113,9 @@ header select {
   flex-direction:column-reverse;
 }
 
-#media-view-div div:hover > h2 {
-  height: 100%;
-  transition: 1s;
+#media-view-div div:hover {
+  box-shadow: -20px 50px 100px rgba(0,0,0,.5);
+  cursor: pointer;
 }
 
 #media-view-div div h2 {
@@ -125,7 +124,15 @@ header select {
   font-size: 16px;
   padding: 10px;
   margin: 0;
+  height: 10%;
 }
+
+#media-view-div div:hover > h2 {
+  height: 100%;
+  transition: 1s;
+}
+
+
 
 #media-view-div h2 {
   margin: 0;
@@ -158,3 +165,23 @@ header select {
   text-shadow: 0 0 5px black;
 
 }
+
+#login {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  width: 100px;
+  margin: 0;
+  border: none;
+  border-bottom:2px solid white;
+  transition: 1s;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+#login:hover {
+  border-bottom: 2px solid lightgreen;
+  color: lightgreen;
+  width: 400px;
+  transition: 1s;
