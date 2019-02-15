@@ -24,7 +24,11 @@ MainPageView.prototype.bindEvents = function() {
   PubSub.subscribe('Media:updated-data-ready', (event) => {
     this.renderCard(event.detail);
   });
+
+
+
 }
+
 
 MainPageView.prototype.render = function () {
 
