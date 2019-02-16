@@ -25,13 +25,15 @@ MediaView.prototype.render = function (item) {
 
 
   const itemGenre = document.createElement('p');
-  itemGenre.textContent = item.genre;
+  itemGenre.textContent = `Genre: ${item.genre}`;
   itemGenre.id = "item-genre";
+  itemGenre.classList.add('blue');
   innerContainer.appendChild(itemGenre);
 
   const itemLanguage = document.createElement('p');
-  itemLanguage.textContent = item.language;
+  itemLanguage.textContent = `Language: ${item.language}`;
   itemLanguage.id = "item-language";
+  itemLanguage.classList.add('orange');
   innerContainer.appendChild(itemLanguage);
 
   const itemLike = document.createElement("input");
@@ -43,11 +45,13 @@ MediaView.prototype.render = function (item) {
     itemLike.value = "Don't Like"
     itemLike.classList.remove('green');
     itemLike.classList.add('red');
+    itemName.innerHTML = `${item.name} <span><i class="fas fa-thumbs-down red"></span>`
   }
   else {
     itemLike.value = "Like"
     itemLike.classList.remove('red');
     itemLike.classList.add('green');
+    itemName.innerHTML = `${item.name} <span><i class="fas fa-thumbs-up green move"></span>`
   };
   innerContainer.appendChild(itemLike);
 
