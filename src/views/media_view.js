@@ -36,14 +36,18 @@ MediaView.prototype.render = function (item) {
 
   const itemLike = document.createElement("input");
   itemLike.id = "item-like";
-  itemLike.classList.add("toggle-input");
+  // itemLike.classList.add("toggle-input");
   itemLike.type = "button";
   itemLike.value = item.like;
   if (item.like === false){
     itemLike.value = "Don't Like"
+    itemLike.classList.remove('green');
+    itemLike.classList.add('red');
   }
   else {
     itemLike.value = "Like"
+    itemLike.classList.remove('red');
+    itemLike.classList.add('green');
   };
   innerContainer.appendChild(itemLike);
 

@@ -9,9 +9,7 @@ body {
   /* font-family: 'Khula', sans-serif; */
   /* font-family: 'Aleo', serif; */
   font-family: 'Rubik', sans-serif;
-
 }
-
 
 header {
   background-color: none;
@@ -35,18 +33,6 @@ header h1 {
 }
 
 header select {
-}
-
-
-
-.movie-image {
-  width: 100px;
-  height: 140px;
-}
-
-.toggle-button {
-  width: 30px;
-  height: 30px;
 }
 
 #featured-div {
@@ -85,28 +71,17 @@ header select {
 }
 
 #media-view-div {
-
   width:90%;
   padding-top: 20px;
   padding-bottom: 20px;
   margin: 20px auto 0 auto;
   display: flex;
   justify-content: flex-start;
-
-  /* flex-wrap: wrap; */
   overflow:auto;
   transition: 1s;
 }
 
-#media-view-div h2 {
-  background-color: rgba(0,0,0,.8);
-  color: white;
-  height: 12%;
-  line-height: 36px;
-  padding-left: 10px;
-}
-
-#media-view-div div {
+.media-box {
   /* background: linear-gradient(#FFC107, #E91E63); */
   background-color: rgba(0,0,0,.8);
   box-shadow: -10px 25px 50px rgba(0,0,0,.2);
@@ -126,28 +101,32 @@ header select {
   transition: 1s;
 }
 
-#media-view-div div:hover {
+.media-box:hover {
   box-shadow: -20px 50px 100px rgba(0,0,0,.5);
   cursor: pointer;
 }
 
-#media-view-div div div {
+.media-box h2 {
+  background-color: rgba(0,0,0,.8);
+  color: white;
+  height: 12%;
+  line-height: 36px;
+  padding-left: 10px;
+}
+
+#inner-container {
   display: block;
   height: 0;
   font-size: 0;
+  background-color: rgba(0,0,0,.8);
+  position: relative;
 }
 
 #item-like {
   display: none;
 }
 
-#inner-container {
-  display: block;
-  height: 0;
-  position: relative;
-}
-
-#media-view-div div:hover > #inner-container {
+.media-box:hover #inner-container {
   height: 88%;
   transition: 1s;
   display: flex;
@@ -155,33 +134,16 @@ header select {
   justify-content: flex-start;
   font-size: 14px;
 }
-/* #media-view-div:hover > #item-genre {
-  height: 40%;
-}
-#media-view-div:hover > #item-language {
-  height: 40%;
-} */
-#media-view-div div:hover > #item-like {
+
+.media-box:hover #item-like {
   display: inline;
   background-color: black;
   border: none;
-  color: white;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 12%;
-  color: lightgreen;
   cursor: pointer;
-}
-
-/* #media-view-div div:hover > #inner-container p {
-  pointer-events: none;
-} */
-
-
-
-#media-view-div h2 {
-  margin: 0;
 }
 
 #splashscreen {
@@ -197,7 +159,6 @@ header select {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
   color: #4d76af;
   overflow: none;
 }
@@ -226,8 +187,18 @@ header select {
   cursor: pointer;
   text-transform: uppercase;
 }
+
 #login:hover {
   border-bottom: 2px solid lightgreen;
   color: lightgreen;
   width: 400px;
   transition: 1s;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: lightgreen;
+}
