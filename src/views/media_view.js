@@ -7,35 +7,53 @@ const MediaView = function (container) {
 
 MediaView.prototype.render = function (item) {
   const itemContainer = document.createElement('div');
+  itemContainer.classList.add('media-box');
+
+  itemContainer.style.backgroundImage = `url(${item.image})`;
 
   const itemName = document.createElement('h2');
   itemName.textContent = item.name;
   itemContainer.appendChild(itemName);
 
+  const innerContainer = document.createElement('div');
+  innerContainer.id = "inner-container";
+  itemContainer.appendChild(innerContainer);
+
+
+
+
+
+
   const itemGenre = document.createElement('p');
-  itemGenre.textContent = item.genre;
-  itemContainer.appendChild(itemGenre);
+  itemGenre.textContent = `Genre: ${item.genre}`;
+  itemGenre.id = "item-genre";
+  itemGenre.classList.add('blue');
+  innerContainer.appendChild(itemGenre);
 
   const itemLanguage = document.createElement('p');
-  itemLanguage.textContent = item.language;
-  itemContainer.appendChild(itemLanguage);
-
-  const itemImage = document.createElement('img');
-  itemImage.classList.add("movie-image");
-  itemImage.src = item.image;
-  itemContainer.appendChild(itemImage);
+  itemLanguage.textContent = `Language: ${item.language}`;
+  itemLanguage.id = "item-language";
+  itemLanguage.classList.add('orange');
+  innerContainer.appendChild(itemLanguage);
 
   const itemLike = document.createElement("input");
-  itemLike.classList.add("toggle-input");
+  itemLike.id = "item-like";
+  // itemLike.classList.add("toggle-input");
   itemLike.type = "button";
   itemLike.value = item.like;
   if (item.like === false){
     itemLike.value = "Don't Like"
+    itemLike.classList.remove('green');
+    itemLike.classList.add('red');
+    itemName.innerHTML = `${item.name} <span><i class="fas fa-thumbs-down red"></span>`
   }
   else {
     itemLike.value = "Like"
+    itemLike.classList.remove('red');
+    itemLike.classList.add('green');
+    itemName.innerHTML = `${item.name} <span><i class="fas fa-thumbs-up green move"></span>`
   };
-  itemContainer.appendChild(itemLike);
+  innerContainer.appendChild(itemLike);
 
   itemLike.addEventListener('click', (event) => {
     console.log("value of liked film", itemLike.value);
@@ -51,6 +69,69 @@ MediaView.prototype.render = function (item) {
 
   return itemLike;
   });
+
+
+
+
+
+
+  // itemContainer.addEventListener('mouseover', () => {
+  //   const itemGenre = document.createElement('p');
+  //   itemGenre.textContent = item.genre;
+  //   itemGenre.id = "item-genre";
+  //   innerContainer.appendChild(itemGenre);
+  //
+  //   const itemLanguage = document.createElement('p');
+  //   itemLanguage.textContent = item.language;
+  //   itemLanguage.id = "item-language";
+  //   innerContainer.appendChild(itemLanguage);
+  //
+  //   const itemLike = document.createElement("input");
+  //   itemLike.id = "item-like";
+  //   itemLike.classList.add("toggle-input");
+  //   itemLike.type = "button";
+  //   itemLike.value = item.like;
+  //   if (item.like === false){
+  //     itemLike.value = "Don't Like"
+  //   }
+  //   else {
+  //     itemLike.value = "Like"
+  //   };
+  //   innerContainer.appendChild(itemLike);
+  //
+  //   itemLike.addEventListener('click', (event) => {
+  //     console.log("value of liked film", itemLike.value);
+  //     if (itemLike.value === "Don't Like"){
+  //       item.like = true;
+  //     }else{
+  //       item.like = false;
+  //     }
+  //     const dropdown = document.querySelector('select');
+  //     const jointKey = {id: `${item._id}`, like: item.like, genre: dropdown.value};
+  //     console.log('jointkey', jointKey);
+  //     PubSub.publish('MediaView:toggleButton-clicked', jointKey);
+  //
+  //   return itemLike;
+  //   });
+  // });
+  //
+  // itemContainer.addEventListener('mouseout', () => {
+  //   const itemGenre = document.querySelector('#item-genre');
+  //   const itemLanguage = document.querySelector('#item-language');
+  //   const itemLike = document.querySelector('#item-like');
+  //   innerContainer.removeChild(itemGenre);
+  //   innerContainer.removeChild(itemLanguage);
+  //   innerContainer.removeChild(itemLike);
+  // });
+
+
+
+  // const itemImage = document.createElement('img');
+  // itemImage.classList.add("movie-image");
+  // itemImage.src = item.image;
+  // itemContainer.appendChild(itemImage);
+
+
 
   this.container.appendChild(itemContainer);
 }

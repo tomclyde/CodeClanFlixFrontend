@@ -24,7 +24,11 @@ MainPageView.prototype.bindEvents = function() {
   PubSub.subscribe('Media:updated-data-ready', (event) => {
     this.renderCard(event.detail);
   });
+
+
+
 }
+
 
 MainPageView.prototype.render = function () {
 
@@ -43,18 +47,23 @@ MainPageView.prototype.render = function () {
   this.container.appendChild(featured);
   // this.renderFeatured(featured);
 
+  const mediaViewContainer = document.createElement('div');
+  mediaViewContainer.id = "media-view-container";
+  this.container.appendChild(mediaViewContainer)
+
   const mediaView = document.createElement("div")
   mediaView.id = "media-view-div";
-  this.container.appendChild(mediaView);
+  mediaViewContainer.appendChild(mediaView);
 };
 
 MainPageView.prototype.renderFeatured = function (data) {
   const container = document.querySelector('#featured-div')
   console.log("data0",data[0]);
     const url = data[0].image;
-    const image = document.createElement('img');
-    image.src = url;
-    container.appendChild(image);
+    container.style.backgroundImage = "url(https://wpblink.com/sites/default/files/wallpaper/movie/72741/lego-batman-movie-wallpapers-hd-72741-7966744.png)";
+    // const image = document.createElement('img');
+    // image.src = url;
+    // container.appendChild(image);
     const title = document.createElement('h1');
     title.textContent = data[0].name;
     container.appendChild(title);
@@ -72,6 +81,11 @@ MainPageView.prototype.renderCard = function (items) {
 };
 
 MainPageView.prototype.renderHeader = function (header) {
+
+  const title = document.createElement('h1');
+  title.textContent = "CodeClanFlix";
+  header.appendChild(title);
+
   const dropdown = document.createElement('select');
   header.appendChild(dropdown);
   this.populate(dropdown);
